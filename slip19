@@ -1,0 +1,86 @@
+Q1) Write a program to accept the two dimensional array from user and display sum of its
+diagonal elements.
+
+import java.util.Scanner;public class DiagonalSum 
+{
+    public static void main(String[] args) 
+    {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the number of rows (n): ");
+        int n = scanner.nextInt();
+        System.out.print("Enter the number of columns (m): ");
+        int m = scanner.nextInt();
+        if (n != m) 
+        {
+            System.out.println("Please enter a square matrix (same number of rows and columns).");
+            return;
+        }
+        int[][] matrix = new int[n][m];
+        System.out.println("Enter the elements of the matrix:");
+        for (int i = 0; i < n; i++) 
+        {
+            for (int j = 0; j < m; j++) 
+            {
+                System.out.print("Element [" + i + "][" + j + "]: ");
+                matrix[i][j] = scanner.nextInt();
+            }
+        }
+        int primaryDiagonalSum = 0;
+        int secondaryDiagonalSum = 0;
+        for (int i = 0; i < n; i++) 
+        {
+            primaryDiagonalSum += matrix[i][i];
+            secondaryDiagonalSum += matrix[i][n - 1 - i];
+        }
+        System.out.println("Sum of primary diagonal elements: " +primaryDiagonalSum);
+        System.out.println("Sum of secondary diagonal elements: " +secondaryDiagonalSum);
+        System.out.println("Total sum of diagonal elements: " +(primaryDiagonalSum + secondaryDiagonalSum));
+        scanner.close();
+    }
+}
+
+
+
+Q2) Write a program which shows the combo box which includes list of T.Y.B.Sc.(Comp. Sci)
+subjects. Display the selected subject in a text field.
+
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+public class SubjectSelector 
+{
+    public static void main(String[] args) 
+    {
+        JFrame frame = new JFrame("T.Y.B.Sc. (Comp. Sci) Subjects");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(400, 200);
+        frame.setLayout(new FlowLayout());
+        String[] subjects = {
+        "Operating Systems",
+        "Database Management Systems",
+        "Software Engineering",
+        "Web Technology",
+        "Computer Networks",
+        "Data Structures",
+        "Object-Oriented Programming",
+        "Theory of Computation"
+        };
+        JComboBox<String> subjectComboBox = new JComboBox<>(subjects);
+        frame.add(subjectComboBox);
+        JTextField selectedSubjectField = new JTextField(20);
+        selectedSubjectField.setEditable(false);
+        frame.add(selectedSubjectField);
+        subjectComboBox.addActionListener(new ActionListener() 
+        {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            String selectedSubject = (String)
+            subjectComboBox.getSelectedItem();
+            selectedSubjectField.setText(selectedSubject);
+            }
+        });
+        frame.setVisible(true);
+    }
+}
