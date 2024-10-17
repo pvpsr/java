@@ -1,0 +1,117 @@
+Q1) Accept the names of two files and copy the contents of the first to the second. First file
+having Book name and Author name in file.
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
+public class FileCopyExample 
+{
+    public static void main(String[] args) 
+    {
+        Scanner scanner = new Scanner(System.in);// Accept the names of the two files
+        System.out.print("Enter the name of the source file (with .txt
+        extension): ");
+        String sourceFileName = scanner.nextLine();
+        System.out.print("Enter the name of the destination file (with
+        .txt extension): ");
+        String destinationFileName = scanner.nextLine();
+        copyFileContents(sourceFileName, destinationFileName);
+        scanner.close();
+    }
+    private static void copyFileContents(String sourceFileName, String destinationFileName) 
+    {
+        try (BufferedReader reader = new BufferedReader(new FileReader(sourceFileName));
+        BufferedWriter writer = new BufferedWriter(new
+        FileWriter(destinationFileName))) 
+        {
+            String line;
+            while ((line = reader.readLine()) != null) 
+            {
+                writer.write(line);
+                writer.newLine();
+            }
+            System.out.println("Contents copied successfully from " +sourceFileName + " to " + destinationFileName);
+        } catch (IOException e) {
+        System.out.println("An error occurred while copying the file:" + e.getMessage());
+        }
+    }
+}
+
+
+
+Q2) Write a program to define a class Account having members custname, accno. Define
+default and parameterized constructor. Create a subclass called SavingAccount with membersavingbal, 
+minbal. Create a derived class AccountDetail that extends the class SavingAccount
+with members, depositamt and withdrawalamt. Write a appropriate method to display customer
+details.
+
+
+class Account 
+{
+    protected String custName;
+    protected String accNo;
+    public Account() 
+    {
+        this.custName = "Unknown";
+        this.accNo = "0000";
+    }
+    public Account(String custName, String accNo) 
+    {
+        this.custName = custName;
+        this.accNo = accNo;
+    }
+}
+class SavingAccount extends Account 
+{
+    protected double savingBal;
+    protected double minBal;
+    public SavingAccount() 
+    {
+        super();
+        this.savingBal = 0.0;
+        this.minBal = 500.0;
+    }
+    public SavingAccount(String custName, String accNo, double savingBal, double minBal) 
+    {
+        super(custName, accNo);
+        constructor
+        this.savingBal = savingBal;this.minBal = minBal;
+    }
+}
+class AccountDetail extends SavingAccount 
+{
+    private double depositAmt;
+    private double withdrawalAmt;
+    public AccountDetail() {
+    super(); 
+    this.depositAmt = 0.0;
+    this.withdrawalAmt = 0.0;
+    }
+    public AccountDetail(String custName, String accNo, double savingBal,
+    double minBal, double depositAmt, double withdrawalAmt) 
+    {
+        super(custName, accNo, savingBal, minBal); 
+        this.depositAmt = depositAmt;
+        this.withdrawalAmt = withdrawalAmt;
+    }
+    public void displayCustomerDetails() 
+    {
+        System.out.println("Customer Name: " + custName);
+        System.out.println("Account Number: " + accNo);
+        System.out.println("Savings Balance: " + savingBal);
+        System.out.println("Minimum Balance: " + minBal);
+        System.out.println("Deposit Amount: " + depositAmt);
+        System.out.println("Withdrawal Amount: " + withdrawalAmt);
+    }
+}
+public class BankAccountDemo 
+{
+    public static void main(String[] args) 
+    {
+        AccountDetail account = new AccountDetail("John Doe", "123456",1000.0, 500.0, 200.0, 100.0);
+        account.displayCustomerDetails();
+    }
+}
