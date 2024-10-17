@@ -34,6 +34,8 @@ public class PrimeNumbers
         return true; 
     }
 }
+
+
 Q2) Create an abstract class "order" having members id, description. Create two subclasses
 "Purchase Order" and "Sales Order" having members customer name and Vendor name
 respectively. Definemethods accept and display in all cases. Create 3 objects each of Purchas
