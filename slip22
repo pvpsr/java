@@ -1,0 +1,128 @@
+Q1) Write a program to create an abstract class named Shape that contains two integers and an
+empty method named printArea(). Provide three classes named Rectangle, Triangle and Circle
+such that each one of the classes extends the class Shape. Each one of the classes contain
+only the method printArea() that prints the area of the given shape. (use method overriding).
+
+
+abstract class Shape 
+{
+    int dim1, dim2;
+    abstract void printArea();
+}
+class Rectangle extends Shape 
+{
+    Rectangle(int length, int breadth) 
+    {
+    this.dim1 = length;
+    this.dim2 = breadth;
+    }
+    @Overridevoid 
+    printArea() 
+    {
+        int area = dim1 * dim2;
+        System.out.println("Rectangle Area: " + area);
+    }
+}
+class Triangle extends Shape 
+{
+    Triangle(int base, int height) 
+    {
+        this.dim1 = base;
+        this.dim2 = height;
+    }
+    @Override
+    void printArea() 
+    {
+        double area = 0.5 * dim1 * dim2;
+        System.out.println("Triangle Area: " + area);
+    }
+}
+class Circle extends Shape 
+{
+    Circle(int radius) 
+    {
+        this.dim1 = radius;
+    }
+    @Override
+    void printArea() 
+    {
+        double area = Math.PI * dim1 * dim1;
+        System.out.println("Circle Area: " + area);
+    }
+}
+public class ShapeTest 
+{
+    public static void main(String[] args) 
+    {
+        Rectangle rect = new Rectangle(10, 5);
+        Triangle tri = new Triangle(6, 8);
+        Circle cir = new Circle(7);
+        rect.printArea();
+        tri.printArea();
+        cir.printArea();
+    }
+}
+
+
+
+Q2) Write a program that handles all mouse events and shows the event name at the center of
+the Window, red in color when a mouse event is fired. (Use adapter classes).
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+public class MouseEventDemo extends JFrame 
+{
+    private JLabel label;
+    public MouseEventDemo() 
+    {
+        setTitle("Mouse Event Demo");
+        setSize(400, 400);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new BorderLayout());
+        label = new JLabel("", SwingConstants.CENTER);
+        label.setFont(new Font("Arial", Font.BOLD, 20));
+        label.setForeground(Color.RED);
+        add(label, BorderLayout.CENTER);
+        addMouseListener(new MouseAdapter() 
+        {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+            label.setText("Mouse Clicked");
+            }
+            @Override
+            public void mouseEntered(MouseEvent e) {
+            label.setText("Mouse Entered");
+            }
+            @Override
+            public void mouseExited(MouseEvent e) {
+            label.setText("Mouse Exited");
+            }
+            @Override
+            public void mousePressed(MouseEvent e) {
+            label.setText("Mouse Pressed");
+            }
+            @Override
+            public void mouseReleased(MouseEvent e) {
+            label.setText("Mouse Released");
+            }
+        });
+        addMouseMotionListener(new MouseAdapter() 
+        {
+            @Override
+            public void mouseMoved(MouseEvent e) {
+            label.setText("Mouse Moved");
+            }
+            @Override
+            public void mouseDragged(MouseEvent e) {
+            label.setText("Mouse Dragged");
+            }
+        });
+        setVisible(true);
+    }
+    public static void main(String[] args) 
+    {
+        new MouseEventDemo();
+    }
+}

@@ -1,0 +1,96 @@
+Q1) Create an abstract class 'Bank' with an abstract method 'getBalance'. Rs. 100, Rs.150 and
+Rs.200 are deposited in banks A, B and C respectively. BankA', 'BankB' and 'BankC aresubclasses of class 'Bank', each having a method named 'getBalance'. Call this method by
+creating an object of each of the three classes.
+
+abstract class Bank 
+{
+    public abstract int getBalance();
+}
+class BankA extends Bank 
+{
+    private int balance;
+    public BankA() {
+    this.balance = 100;
+    }
+    @Override
+    public int getBalance() {
+    return balance;
+    }
+}
+class BankB extends Bank 
+{
+    private int balance;
+    public BankB() {
+    this.balance = 150;
+    }
+    @Override
+    public int getBalance() {
+    return balance;
+    }
+}
+class BankC extends Bank 
+{
+    private int balance;
+    public BankC() {
+    this.balance = 200;
+    }
+    @Override
+    public int getBalance() {
+    return balance;
+    }
+}
+public class BankTest 
+{
+    public static void main(String[] args) 
+    {
+        Bank bankA = new BankA();
+        Bank bankB = new BankB();
+        Bank bankC = new BankC();
+        System.out.println("Balance in Bank A: Rs. " +bankA.getBalance());
+        System.out.println("Balance in Bank B: Rs. " +bankB.getBalance());
+        System.out.println("Balance in Bank C: Rs. " +bankC.getBalance());
+    }
+}
+
+
+
+Q2) Program that displays three concentric circles where ever the user clicks the mouse on a
+frame. The program must exit when user clicks 'X' on the frame.
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+public class ConcentricCircles extends JFrame 
+{
+    private int x = -100;
+    private int y = -100;
+    public ConcentricCircles() 
+    {
+        setTitle("Concentric Circles");
+        setSize(400, 400);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        addMouseListener(new MouseAdapter() {
+        @Override
+        public void mouseClicked(MouseEvent e) 
+        {
+            x = e.getX();
+            y = e.getY();
+            repaint();
+        }
+        });
+    }
+    @Override
+    public void paint(Graphics g) 
+    {
+        super.paint(g);
+        g.drawOval(x - 30, y - 30, 60, 60);
+        g.drawOval(x - 60, y - 60, 120, 120);
+        g.drawOval(x - 90, y - 90, 180, 180);
+    }
+    public static void main(String[] args) 
+    {
+        ConcentricCircles frame = new ConcentricCircles();
+        frame.setVisible(true);
+    }
+}
