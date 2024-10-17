@@ -99,8 +99,7 @@ public class TestOperation
         System.out.print("Enter second float for subtraction: ");
         float float2 = scanner.nextFloat();
         float difference = addition.subtract(float1, float2);
-        System.out.println("Difference between " + float1 + " and " +
-        float2 + ": " + difference);
+        System.out.println("Difference between " + float1 + " and " + float2 + ": " + difference);
         System.out.print("Enter first integer for maximum: ");
         int maxNum1 = scanner.nextInt();
         System.out.print("Enter second integer for maximum: ");
