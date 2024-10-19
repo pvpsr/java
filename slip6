@@ -1,38 +1,30 @@
 Q1) Write a program to display the Employee(Empid, Empname, Empdesignation, Empsal)
 information using toString().
 
-public class PrimeNumbers 
-{
-    public static void main(String[] args) 
-    {
-        if (args.length == 0) {
-        System.out.println("Please provide numbers as command line
-        arguments.");
-        return;
-        }
-        System.out.println("Prime numbers in the array:");
-        for (String arg : args) {
-        try {
-        int number = Integer.parseInt(arg);
-        if (isPrime(number)) {System.out.println(number);
-        }
-        } catch (NumberFormatException e) {
-        System.out.println(arg + " is not a valid number.");
-        }
-        }
-    }
-    public static boolean isPrime(int number) 
-    {
-        if (number <= 1) {
-        return false; 
-        }
-        for (int i = 2; i <= Math.sqrt(number); i++) {
-        if (number % i == 0) {
-        return false; 
-        }
-        }
-        return true; 
-    }
+import java.util.*;
+class Emp 
+{ 
+     int id,salary; 
+     String name; 
+     String desig; 
+     Emp(int id, String name, int salary ,String desig) 
+     { 
+         this.id=id; 
+         this.name=name; 
+         this.salary=salary; 
+         this.desig=desig; 
+     } 
+     public String toString() // overrides toString() method 
+     { 
+         return id+" "+name+" "+salary+" "+desig; 
+     } 
+     public static void main(String args[]) 
+     { 
+         Emp E1=new Emp(111,"Rakesh",50000,"bsc cs"); 
+         Emp E2=new Emp(112,"Suresh",25000,"msc cs"); 
+         System.out.println("Employee details: "+E1); 
+         System.out.println("Employee details: "+E2); 
+     }
 }
 
 
